@@ -16,7 +16,10 @@
         }
     ],
     "require": {
-        "php": ">=5.3"
+        "php": ">=5.3",
+        "andylib/qa-domain": "dev-master",
+        "doctrine/doctrine-orm-module": "dev-master",
+        "doctrine/doctrine-module": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": ">=3.7",
@@ -30,5 +33,11 @@
         "psr-0": {
             "Andylib\\QA\\Data\\": "src"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/andylib/qa-domain.git"
+        }
+    ]
 }
