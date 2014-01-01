@@ -18,6 +18,7 @@
     "require": {
         "php": ">=5.3",
         "andylib/qa-domain": "dev-master",
+        "zendframework/zendframework": "2.2.*",
         "doctrine/doctrine-orm-module": "dev-master",
         "doctrine/doctrine-module": "dev-master"
     },
