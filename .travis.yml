@@ -6,6 +6,8 @@ php:
 
 before_install:
  - mkdir module && cp phpunit.xml.dist phpunit.xml && composer install --dev --prefer-source
+ - cp tests/config/autoload/doctrine-connection.local.php.dist tests/config/autoload/doctrine-connection.local.php
+ - psql -c 'CREATE DATABASE test_qa_data;' -U postgres
 
 script:
  - ant
