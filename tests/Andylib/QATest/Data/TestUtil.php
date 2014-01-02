@@ -26,7 +26,7 @@ class TestUtil
             $zf2ModulePaths[] = $path;
         }
         
-        static::$applicationConfigFile = __DIR__ . '/../../../../../config/application.config.php';
+        static::$applicationConfigFile = __DIR__ . '/../../../config/application.config.php';
 
         static::initAutoloader();
 
