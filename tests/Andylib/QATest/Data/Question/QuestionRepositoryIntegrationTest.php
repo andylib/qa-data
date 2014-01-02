@@ -41,6 +41,7 @@ class QuestionRepositoryIntegrationTest extends AbstractHttpControllerTestCase
         
         $id = new Id();
         $question->setId($id);
+        $question->setTitle('some-title');
 
         $this->questionRepository->save($question);
         
