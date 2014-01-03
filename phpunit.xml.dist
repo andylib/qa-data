@@ -11,9 +11,13 @@
     backupGlobals="false"
     syntaxCheck="true"
 >
-    <testsuite name="QA Domain tests">
+    <testsuite name="qa-domain-unit-tests">
         <directory>./tests/Andylib/QATest</directory>
     </testsuite>
+    <testsuite name="qa-domain-integration-tests">
+        <directory>./tests/Andylib/QAIntegrationTest</directory>
+    </testsuite>
+
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./src</directory>
