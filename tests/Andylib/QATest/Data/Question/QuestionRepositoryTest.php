@@ -27,8 +27,8 @@ class QuestionRepositoryTest extends AbstractHttpControllerTestCase
         parent::setUp();
 
         $mockObjectManager = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')
-                                 ->disableOriginalConstructor()
-                                 ->getMock();
+                                  ->disableOriginalConstructor()
+                                  ->getMock();
     
         $this->mockObjectManager = $mockObjectManager;
 
@@ -55,12 +55,24 @@ class QuestionRepositoryTest extends AbstractHttpControllerTestCase
         $question->setTitle('some-title');
         
         $this->mockObjectManager->expects($this->once())
-                              ->method('persist')
-                              ->with($question);
+                                ->method('persist')
+                                ->with($question);
         
         $this->mockObjectManager->expects($this->once())
-                              ->method('flush');
+                                ->method('flush');
 
         $this->questionRepository->save($question);
+    }
+    
+    public function testGetCallObjectManagerFind()
+    {
+        $this->mockObjectManager->expects($this->once())
+                                ->method('find')
+                                ->with(
+                                    $this->equalTo('Andylib\QA\Domain\Question\Question'),
+                                    $this->equalTo(2)
+                                );
+        
+        $this->questionRepository->get(2);
     }
 }
