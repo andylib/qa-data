@@ -27,12 +27,7 @@ class QuestionRepositoryIntegrationTest extends AbstractHttpControllerTestCase
         $serviceManager = $this->getApplicationServiceLocator();
         $this->questionRepository = $serviceManager->get('Andylib\QA\Domain\Question\QuestionRepositoryInterface');
     }
-    
-    public function testImplementQuestionRepositoryInterface()
-    {
-        $this->assertInstanceOf('Andylib\QA\Domain\Question\QuestionRepositoryInterface', $this->questionRepository);
-    }
-
+     
     public function testSaveGet()
     {
         $post = new Post('content', new \DateTime(), new User('abc'));

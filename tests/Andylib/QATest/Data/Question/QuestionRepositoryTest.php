@@ -15,7 +15,9 @@ class QuestionRepositoryTest extends AbstractHttpControllerTestCase
     protected $traceError = true;
     
     protected $questionRepository;
-    
+
+    protected $mockObjectManager;
+
     public function setUp()
     {
         $this->setApplicationConfig(
@@ -24,17 +26,25 @@ class QuestionRepositoryTest extends AbstractHttpControllerTestCase
 
         parent::setUp();
 
+        $mockObjectManager = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')
+                                 ->disableOriginalConstructor()
+                                 ->getMock();
+    
+        $this->mockObjectManager = $mockObjectManager;
+
         $serviceManager = $this->getApplicationServiceLocator();
+        $serviceManager->setAllowOverride(true);
+        $serviceManager->setService('Doctrine\ORM\EntityManager', $mockObjectManager);
+        
         $this->questionRepository = $serviceManager->get('Andylib\QA\Domain\Question\QuestionRepositoryInterface');
     }
     
-    /*
     public function testImplementQuestionRepositoryInterface()
     {
         $this->assertInstanceOf('Andylib\QA\Domain\Question\QuestionRepositoryInterface', $this->questionRepository);
     }
 
-    public function testSaveGet()
+    public function testSaveCallObjectManagerPersistAndFlush()
     {
         $post = new Post('content', new \DateTime(), new User('abc'));
 
@@ -43,15 +53,14 @@ class QuestionRepositoryTest extends AbstractHttpControllerTestCase
         $id = new Id();
         $question->setId($id);
         $question->setTitle('some-title');
+        
+        $this->mockObjectManager->expects($this->once())
+                              ->method('persist')
+                              ->with($question);
+        
+        $this->mockObjectManager->expects($this->once())
+                              ->method('flush');
 
         $this->questionRepository->save($question);
-        
-        $this->assertEquals($question, $this->questionRepository->get($id));
-    }
-    */
-
-    public function testSkip()
-    {
-        $this->markTestSkipped('skipped for now');
     }
 }
