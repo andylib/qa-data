@@ -11,10 +11,10 @@
     backupGlobals="false"
     syntaxCheck="true"
 >
-    <testsuite name="qa-domain-unit-tests">
+    <testsuite name="qa-data-unit-tests">
         <directory>./tests/Andylib/QATest</directory>
     </testsuite>
-    <testsuite name="qa-domain-integration-tests">
+    <testsuite name="qa-data-integration-tests">
         <directory>./tests/Andylib/QAIntegrationTest</directory>
     </testsuite>
 
